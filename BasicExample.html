@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Getting Started with Handlebars</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script type="text/javascript" src="code.js"></script>
+  </head>
+  <body>
+    
+    <script id="hello-world-template" type="text/x-handlebars-template">
+      <h2>Hello {{adj}} world!</h2>
+
+      <p>Now let's add some {{{bold 'bold text'}}} to this page.</p>
+
+      <p>List of addresses:</p>
+      {{#listAddr addrs}}{{addr1}},<br> {{addr2}},<br> {{addr3}}{{/listAddr}}
+    </script>
+    
+    <div id="content"></div>
+
+    <script type="text/javascript">
+      var source = document.getElementById("hello-world-template").innerHTML;
+      var template = Handlebars.compile(source);
+      var context = {adj: "awesome", addrs : [
+	{addr1: "345", addr2: "Peach Tree Lane", addr3: "Somewhereville"},
+	{addr1: "142", addr2: "Orange Street", addr3: "Smallville"},
+	{addr1: "249", addr2: "Banana Avenue", addr3: "Orange County, CA"}
+      ]};
+      document.getElementById("content").innerHTML = template(context);
+    </script>
+  </body>
+</html>
